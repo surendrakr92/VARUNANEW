@@ -1,0 +1,182 @@
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between ">
+    <span class="ping"> <a (click)="toggle()"><i class="bi bi-grid toggle-sidebar-btn "></i></a></span>
+
+
+    <a href="/dashboard" class="logo d-flex align-items-center m-2">
+      <img src="assets/img/logo.png" alt="">
+    </a>
+
+  </div>
+
+  <div class="search-bar" [ngClass]="showsearchbar ? 'search-bar-show':''" >
+    <form class="search-form d-flex align-items-center" method="POST" action="/">
+      <input type="text" name="query" placeholder="Search by T code" title="Enter search keyword">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+<div class="bgTcode">
+  <ul>
+    <li  class="brorderLeftmt font-weight-bold"><a href="#"><b>Manchester</b></a>
+    <ul>
+    <li class="brorderLeftmt font-weight-bold"><a href="#"><b>Magazine</b></a>
+    <ul>
+    <li><a href="#">Spiral Scratch</a></li>
+    <li><a href="#">Real Life</a></li>
+    <li><a href="#">Secondhand Daylight</a></li>
+    <li><a href="#">The Correct Use</a></li>
+    </ul>
+    </li>
+    <li class="brorderLeftmt font-weight-bold"><a href="#"><b>Buzzcocks</b></a>
+    <ul>
+    <li><a href="#">Time's Up</a></li>
+    <li><a href="#">Another Music in A Different Kitchen</a></li>
+    <li><a href="#">Love Bites</a></li>
+    <li><a href="#">A Different Kind Of Tension</a></li>
+    </ul>
+    </li>
+    <li class="brorderLeftmt font-weight-bold"><a href="#"><b>Joy Division</b></a>
+    <ul>
+    <li><a href="#">Unknown Pleasures</a></li>
+    <li><a href="#">Closer</a></li>
+    <li><a href="#">Still</a></li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+
+    </ul>
+<hr>
+
+</div>
+
+
+  </div>
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " (click)="this.showsearchbar=!this.showsearchbar">
+          <i class="bi bi-search"></i>
+        </a>
+      </li>
+      <li class="nav-item nav-icon2 hidden-mobile">
+        <a class="nav-link " href="javascript:void(0)" title="">
+          <span>{{userCode??'Not Available'}}</span>
+        </a>
+      </li>
+
+      <li class="nav-item nav-icon2 hidden-mobile">
+        <a class="nav-link " href="javascript:void(0)" title="">
+          <span>{{userName}}</span>
+        </a>
+      </li>
+      <li class="nav-item nav-icon2 hidden-mobile">
+        <a class="nav-link " href="javascript:void(0)" title="">
+          <span>{{userBranch}}</span>
+        </a>
+      </li>
+      <li class="nav-item nav-icon2 hidden-mobile">
+        <a class="nav-link " href="javascript:void(0)" title="">
+          <span>TRT - TRANSPORT DIVISION</span>
+        </a>
+      </li>
+
+      <li class="nav-item nav-icon2 hidden-mobile" style="border: none;">
+        <a class="nav-link " href="javascript:void(0)" title="">
+          <span>2023 - 2024</span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown pe-3">
+
+        <a class="nav-link nav-3 d-flex align-items-center pe-0" href="javascript:void(0)" data-bs-toggle="dropdown">
+          <i class="bi bi-three-dots-vertical" style="font-size: 32px;"></i>
+
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="/dashboard">
+              <i class="bi bi-house-door"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="/profile">
+              <i class="bi bi-person"></i>
+              <span>My Profile</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="profile/quick">
+              <i class="bi bi-repeat-1"></i>
+              <span>Quick Guide</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="profile/ChangeFinYear">
+              <i class="bi bi-coin"></i>
+              <span>Change FinYears & Company</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="profile/file-uploading-configration">
+              <i class="bi bi-file-earmark-image"></i>
+              <span>File Upload Configration</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="dropdown-item d-flex align-items-center" (click)="logout()">
+              <i class="bi bi-box-arrow-left"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="profile/VirtualLogin">
+              <i class="bi bi-box-arrow-in-right"></i>
+              <span>Virtual Login</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="profile/help">
+              <i class="bi bi-info-circle"></i>
+              <span>Help</span>
+            </a>
+          </li>
+
+
+
+
+        </ul>
+      </li>
+
+
+    </ul>
+  </nav>
+</header>

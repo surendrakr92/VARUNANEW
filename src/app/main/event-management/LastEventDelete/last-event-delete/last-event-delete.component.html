@@ -1,0 +1,168 @@
+<div class="main-contianer">
+    <div class="display bg-dark-light mb-2">
+        <span class="title">
+            <a routerLink="/master"><i class="bi bi-arrow-return-left booticon" ngbTooltip="Back to Indent"
+                    placement="right"></i> </a>
+        </span>
+        <span class="titlemed">Last Event Delete</span>
+        <span class="title">
+            <a routerLink="/dashboard"> <i class="bi bi-house-gear booticon " ngbTooltip="Dashboad"
+                    placement="bottom"></i>
+            </a>
+        </span>
+    </div>
+    <form [formGroup]="formMaster">
+        <div class="row mt-3 d-flex justify-content-center  mb-2">
+
+            <div class="col-lg-10">
+                <div class="row">
+                    <label for="inputText" class="col-sm-4 col-lg-4 col-form-label"> <span class="float-end">Enter
+                            Vehicle Number<span class="text-danger">*</span></span> </label>
+
+
+                    <div class=" col-lg-4 ">
+
+                        <ng-select class="pb-2 " placeholder="Select Vehicle Number" [searchable]="true"
+                            formControlName="vehicleNo" [ngClass]="{'is-invalid':submitted && fs['vehicleNo'].errors}">
+                            <ng-option value="" selected>Select</ng-option>
+                            <ng-option [value]="item.vehicleNo"
+                                *ngFor="let item of vehicleList">{{item.vehicleNo}}</ng-option>
+                        </ng-select>
+
+                        <div *ngIf="submitted && fs['vehicleNo'].errors">
+                            <small class="text-danger" *ngIf="fs['vehicleNo'].errors?.['required']">please
+                                select vehicle number
+                            </small>
+                            <small class="text-danger" *ngIf="fs['vehicleNo'].errors?.serverError">{{
+                                fs['vehicleNo'].errors.serverError}}</small>
+                        </div>
+                    </div>
+                    <div class=" col-lg-2 ">
+                        <button type="button" (click)="Searchbtn()"
+                            class="btn btn-warning rounded-pill btn-padding2 btn-sm"><i class="bi bi-search"></i> Search
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <form [formGroup]="formMasterNew">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Vehicle no.
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="vehicleNo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Event Date
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+
+                        <input class="form-control" type="date" formControlName="eventDate">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Event Status
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="subeventid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Sub Event
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="subeventid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Main Event
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="mainEvent">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Location
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="location">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Remarks
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+                        <input class="form-control" type="text" formControlName="remarks">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Report location
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+
+                        <input class="form-control" type="text" formControlName="reportLocation">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">Sr no
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+
+                        <input class="form-control" type="text" formControlName="srno">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group ">
+                    <label for="inputText" class="col-sm-12 col-lg-12 col-form-label">SCM Sr no
+
+                    </label>
+                    <div class=" col-sm-12 col-lg-12 ">
+
+                        <input class="form-control" type="text" formControlName="scmSrNo">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center mt-4 mb-2"><button _ngcontent-phe-c52="" type="button"
+                    class="btn btn-primary rounded-pill btn-sm btn-padding">Submit</button></div>
+        </div>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,88 @@
+.newIcon{
+    width: 30px;
+    height: 30px;
+ background-color: #000;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    top: 86px;
+    left: 280px;
+    cursor: pointer;
+}
+
+.header .search-form input {
+    border: 0;
+    font-size: 1.3vmin;
+    color: #012970;
+    border: none;
+    padding: 7px 38px 7px 8px;
+    border-radius: 3px;
+    transition: 0.3s;
+    width: 100%;
+    height: 25px;
+}
+
+.header .search-form input:focus, .header .search-form input:hover {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.bgTcode{
+    background-color: #ffffff;
+    min-height: 150px;
+    min-width: 320px;
+     position: absolute;
+     z-index: -1;
+     top: 23px;
+     padding: 7px 7px 7px 7px;
+    transition: 0.3s;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: none;
+   
+}
+.bgTcode ul{
+    list-style: none;
+    padding-left: 1rem;
+}
+ .bgTcode ul li{
+padding-top: 5px;
+}
+
+.search-bar{
+    position: relative;
+    z-index: 444;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+}
+
+.bgTcode li:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 0;
+    position: relative;
+    left: 0em;
+    top: 0em;
+    border-top: 1px solid gray;
+}
+.bgTcode li a {
+    padding: 0 0 0 10px;
+    position: relative;
+    top: 2px;
+    padding: 3px;
+    border: 1px solid #ffffff;
+}
+.bgTcode li a:hover {
+    border: 1px solid #ccc;
+    padding: 3px;
+}
+.brorderLeftmt{
+    border-left: 1px solid gray; margin-top: 20px;   
+}
+.font-weight-bold{
+    font-weight: 400;
+}
