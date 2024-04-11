@@ -14,6 +14,7 @@ import { SubCategoryMasterViewComponent } from './DPR/sub-category-master-view/s
 import { SubCategoryMasterComponent } from './DPR/sub-category-master/sub-category-master.component';
 import { DriverPerformanceRemarksEntryComponent } from './DPR/driver-performance-remarks-entry/driver-performance-remarks-entry.component';
 import { DriverPerformanceRemarksCreateComponent } from './DPR/driver-performance-remarks-create/driver-performance-remarks-create.component';
+import { FuelBillMappingWithThcComponent } from './FuelBillMappingwithTHC/fuel-bill-mapping-with-thc/fuel-bill-mapping-with-thc.component';
 
 const routes: Routes = [
 
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path: 'driver-performance-remarks-entry/driver-performance-create', component: DriverPerformanceRemarksCreateComponent
+  },
+  {
+    path: 'fuel-bill-mapping-with-thc', component: FuelBillMappingWithThcComponent
   },
 ];
 

@@ -20,6 +20,7 @@ import { RemarksMasterComponent } from './DPR/remarks-master/remarks-master.comp
 import { SubCategoryMasterComponent } from './DPR/sub-category-master/sub-category-master.component';
 import { DriverPerformanceRemarksCreateComponent } from './DPR/driver-performance-remarks-create/driver-performance-remarks-create.component';
 import { DriverPerformanceRemarksEntryComponent } from './DPR/driver-performance-remarks-entry/driver-performance-remarks-entry.component';
+import { FuelBillMappingWithThcComponent } from './FuelBillMappingwithTHC/fuel-bill-mapping-with-thc/fuel-bill-mapping-with-thc.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DriverPerformanceRemarksEntryComponent } from './DPR/driver-performance
     SubCategoryMasterViewComponent,
     RemarksMasterViewComponent,
     DriverPerformanceRemarksCreateComponent,
-    DriverPerformanceRemarksEntryComponent
+    DriverPerformanceRemarksEntryComponent,
+    FuelBillMappingWithThcComponent
   ],
   imports: [
     CommonModule,

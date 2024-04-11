@@ -149,6 +149,19 @@ disableAndEnablemvvehicleblack(data: any) {
     body: data
   });
 }
+//fuel-bill-mapping-with-thc
+getalltripnumber(data:any) {
+  let url = environment.baseWebApiUrl + 'varuna/v1/fuelbillthcmapping/getalltripnumber'
+  return this.http.post(url, {"branchId":data});
+}
 
+getallfuelbillthcmapping(data:any) {
+  let url = environment.baseWebApiUrl + 'varuna/v1/fuelbillthcmapping/getallfuelbillthcmapping'
+  return this.http.post(url, data);
+}
 
+updatefuelbillthcmapping(data:any) {
+  let url = environment.baseWebApiUrl + 'varuna/v1/fuelbillthcmapping/updatefuelbillthcmapping'
+  return this.http.put(url, data);
+}
 }

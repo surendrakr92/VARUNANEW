@@ -1,0 +1,83 @@
+<div class="main-contianer">
+    <div class="display bg-dark-light mb-2">
+       <span class="title">
+       <a routerLink="/fleet"><i class="bi bi-arrow-return-left booticon" ngbTooltip="Back to Fleet"
+          placement="right"></i> </a>
+       </span>
+       <span class="titlemed">Fuel Bill Mapping with THC</span>
+       <span class="title">
+       <a routerLink="/dashboard"> <i class="bi bi-house-gear booticon " ngbTooltip="Dashboard"
+          placement="bottom"></i>
+       </a>
+       </span>
+    </div>
+
+
+    <form [formGroup]="formMaster">
+       <div class="row mt-3 d-flex justify-content-center  mb-2">
+          <div class="col-lg-6">
+             <div class="row">
+                <label for="inputText" class="col-sm-4 col-lg-4 col-form-label"> <span class="float-end"> Trip Sheet No 
+                <span class="text-danger">*</span></span> </label>
+                <div class=" col-lg-5 ">
+                   <ng-select class="pb-2 " placeholder="Select  Trip Sheet No " [searchable]="true" [clearable]="true"
+                   formControlName="tripId" [ngClass]="{'is-invalid':submitt && fs['tripId'].errors}">
+                   <ng-option value="" selected>Select</ng-option>
+                   <ng-option [value]="item.tripId" *ngFor="let item of tripIdno">{{item.tripsheetno
+                   }}</ng-option>
+                   </ng-select> 
+                   <div *ngIf="submitt && fs['tripId'].errors">
+                      <small class="text-danger" *ngIf="fs['tripId'].errors?.['required']">please select
+                      trip sheet no
+                      </small>
+                      <small class="text-danger" *ngIf="fs['tripId'].errors?.serverError">{{
+                      fs['tripId'].errors.serverError}}</small>
+                   </div>
+                </div>
+                <div class=" col-lg-3 ">
+                   <button type="button" class="btn btn-warning rounded-pill btn-padding2 btn-sm" (click)="OnSubmit()"
+                      >Next <i class="bi bi-chevron-double-right"></i>
+                   </button>
+                </div>
+             </div>
+          </div>
+       </div>
+    </form>
+
+<table class="table table-report table-hover dataTable no-footer">
+<thead class="bg-secondary text-white">
+    <tr>
+        <th>Sr. No.</th>
+        <th>Place</th>
+        <th>Bill No</th>
+        <th>Bill Date</th>
+        <th>Diesel Litre</th>
+        <th>Vendor Name</th>
+        <th>Fuel Type</th>
+        <th>THC No</th>
+   
+    </tr>
+</thead>
+<tbody>
+    <tr class="zoom-in" *ngFor="let item of fuelbillthcmapping; index as i;">
+        <td>{{i+1}}</td>
+        <td>{{item.place}}</td>
+        <td>{{item.billno}}</td>
+        <td>{{item.billDate}}</td>
+        <td>{{item.dieselLtr}}</td>
+        <td>{{item.vendorname}}</td>
+        <td>{{item.fuelType}}</td>
+        <td>{{item.thcno}}</td>
+     
+     
+    </tr>
+</tbody>
+</table>
+<div  class="row m-3">
+    <div  class="text-center">
+       <button (click)="Submit()" type="button" class="btn btn-primary rounded-pill btn-sm btn-padding">Submit</button>
+    </div>
+ </div>
+
+
+ </div>
