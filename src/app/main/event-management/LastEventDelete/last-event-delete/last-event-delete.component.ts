@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { CommonServiceService } from 'src/app/services/commonService/common-service.service';
 import { CountryMasterService } from 'src/app/services/master-service/country-master.service';
 import { EventMasterService } from 'src/app/services/master-service/event-master.service';
 
@@ -9,77 +11,91 @@ import { EventMasterService } from 'src/app/services/master-service/event-master
   styleUrls: ['./last-event-delete.component.scss']
 })
 export class LastEventDeleteComponent implements OnInit {
-  formMaster!:FormGroup
-  submitted=false
-  formMasterNew!:FormGroup
-  vehicleList:any
-  vehicleData:any=""
-
-  constructor(private fb:FormBuilder,private formbuilder:FormBuilder, private masterService:CountryMasterService,private eventService:EventMasterService,) {}
-  ngOnInit(): void {
-  this.formMaster= this.fb.group({
-    vehicleNo:['',Validators.required],
+  formMaster!: FormGroup
+  submitted = false
+  formMasterNew!: FormGroup
+  vehicleList: any
+  vehicleData: any = ""
+  MainAndSubEventMasterList: any
+  UserId: any
+  constructor(private fb: FormBuilder, private formbuilder: FormBuilder, private toastrService: ToastrService, private cs: CommonServiceService,
+    private masterService: CountryMasterService, private eventService: EventMasterService,) {
+    this.UserId = this.cs.login_UserId()
   }
-)
-this.APIBinding()
-this.lasteEventFilterData()
-}
-  get fs(){
+  ngOnInit(): void {
+    this.formMaster = this.fb.group({
+      vehicleNo: ['', Validators.required],
+    }
+    )
+    this.APIBinding()
+    this.lasteEventFilterData()
+  }
+  get fs() {
     return this.formMaster.controls;
   }
-  Searchbtn(){
-    this.submitted=true
-    if(this.formMaster.invalid){
+  Searchbtn() {
+    this.submitted = true
+    if (this.formMaster.invalid) {
       return
     }
-    this.eventService.getFilterData(this.formMaster.value).subscribe((res:any)=>{
-this.vehicleData= res.data[0]
-this.formMasterNew.controls['vehicleNo'].setValue(this.vehicleData.vehicleNo)
-this.formMasterNew.controls['eventDate'].setValue(this.vehicleData.eventDate)
-this.formMasterNew.controls['maineventid'].setValue(this.vehicleData.maineventid)
-this.formMasterNew.controls['mainEvent'].setValue(this.vehicleData.mainEvent)
-this.formMasterNew.controls['subeventid'].setValue(this.vehicleData.subeventid)
-this.formMasterNew.controls['subEvent'].setValue(this.vehicleData.subEvent)
-this.formMasterNew.controls['subEventDesc'].setValue(this.vehicleData.subEventDesc)
-this.formMasterNew.controls['mainEventDesc'].setValue(this.vehicleData.mainEventDesc)
-this.formMasterNew.controls['vehicleStatusFlag'].setValue(this.vehicleData.vehicleStatusFlag)
-this.formMasterNew.controls['location'].setValue(this.vehicleData.location)
-this.formMasterNew.controls['remarks'].setValue(this.vehicleData.remarks)
-this.formMasterNew.controls['reportLocation'].setValue(this.vehicleData.reportLocation)
-this.formMasterNew.controls['srno'].setValue(this.vehicleData.srno)
-this.formMasterNew.controls['currentEventId'].setValue(this.vehicleData.currentEventId)
-this.formMasterNew.controls['scmSrNo'].setValue(this.vehicleData.scmSrNo)
+    this.eventService.getFilterData(this.formMaster.value).subscribe((res: any) => {
+      if (res.succeeded) {
+        this.vehicleData = res.data[0]
+        this.formMasterNew.patchValue(this.vehicleData)
+        this.formMasterNew.controls.eventDate.setValue(this.vehicleData?.eventDate.slice(0,10))
+               
+      }
+
+    }, err => {
+      this.toastrService.error(err.error.Message, `Error status:${err.status}`);
     })
 
   }
-  
-
-lasteEventFilterData(){
-this.formMasterNew=this.formbuilder.group({
-  vehicleNo: [""],
-  eventDate: [""],
-  maineventid: [""],
-  mainEvent:[""],
-  subeventid: [""],
-  subEvent: [""],
-  subEventDesc: [""],
-  mainEventDesc: [""],
-  vehicleStatusFlag: [""],
-  location: [""],
-  remarks: [""],
-  reportLocation: [""],
-  srno: [""],
-  currentEventId: [""],
-  scmSrNo:[""],
-})
-}
 
 
-
-  APIBinding(){
-this.masterService.getAllVehicleMaster().subscribe((res:any)=>{
-  this.vehicleList= res.data
-  console.log(this.vehicleList)
-})
+  lasteEventFilterData() {
+    this.formMasterNew = this.formbuilder.group({
+      vehicleNo: [""],
+      eventDate: [""],
+      currentEventDesc: [""],
+      subEventDesc: [""],
+      mainEventDesc: [""],
+      location: [""],
+      remarks: [""],
+      reportLocation: [""],
+      srno: [""],
+    
+    })
   }
+  APIBinding() {
+    this.eventService.getAllVStsList().subscribe((res: any) => {
+      this.vehicleList = res.data
+      console.log(this.vehicleList)
+    })
+
+  }
+  deleteData() {
+    if (this.formMasterNew.invalid) {
+      return
+    }
+    let JsonDel: any = {
+      srno: this.vehicleData.srno,
+      vehicleNo: this.vehicleData?.vehicleNo,
+      createdBy: this.UserId
+
+    }
+    console.log(JsonDel)
+    this.eventService.deleteeventsbyid(JsonDel).subscribe((res: any) => {
+      if (res.succeeded) {
+        this.toastrService.success('succesfully changed status', 'Success-200 !');
+        this.formMasterNew.reset()
+        this.formMaster.reset()
+        this.submitted=false
+      }
+    }, err => {
+      this.toastrService.error(err.error.Message, `Error status:${err.status}`);
+    })
+  }
+
+
 }

@@ -13,9 +13,11 @@
     <h5 class="card-title">Sub City Name List
     </h5>
     <div class="pb-2">
-       <button type="button" class="btn btn-success m-1" routerLink="/master/sub-city-master/new-sub-city-master" ngbTooltip="Create New SUb City List" placement="bottom"><i
+       <button type="button" class="btn btn-success m-1" routerLink="/master/sub-city-master/new-sub-city-master" ngbTooltip="Create New SUb City List" 
+       *ngIf="permissions && permissions.Create" placement="bottom"><i
           class="bi bi-plus-lg "></i> Create </button>
-          <button class="btn btn-secondary text-white" ngbTooltip="Download List" placement="bottom" (click)="downloadExcel(MyTable)" title="Download File" type="button"><i class="bi bi-download" ></i>
+          <button class="btn btn-secondary text-white" ngbTooltip="Download List" 
+          *ngIf="permissions && permissions.Export" placement="bottom" (click)="downloadExcel(MyTable)" title="Download File" type="button"><i class="bi bi-download" ></i>
           </button>
      </div>
     </div>
@@ -69,9 +71,12 @@
              <td><span class="{{Item.isActive ?'text-success':' text-danger'}}"><i class="bi bi-check2-square pr"></i>
                {{Item.isActive?'Active':'Inactive'}}</span></td>
              <td class="display2">
-                <a routerLink="/master/sub-city-master/view-sub-city-master/{{Item.subCityId}}" ngbTooltip="View" placement="bottom"class="view"><i class="bi bi-eye-fill pr"></i></a>
-                <a (click)="redirectionEdit(Item.subCityId)"  ngbTooltip="Edit" placement="bottom" class="edit"><i class="bi bi-pen-fill pr"></i></a>
-                <a  class="delete" ngbTooltip="Active/Inactive" placement="bottom" (click)="activeInactive(Item.subCityId)" >
+                <a routerLink="/master/sub-city-master/view-sub-city-master/{{Item.subCityId}}" ngbTooltip="View" 
+                *ngIf="permissions && permissions.View" placement="bottom"class="view"><i class="bi bi-eye-fill pr"></i></a>
+                <a (click)="redirectionEdit(Item.subCityId)"  ngbTooltip="Edit" placement="bottom" class="edit"
+                *ngIf="permissions && permissions['Edit/Modify']"><i class="bi bi-pen-fill pr"></i></a>
+                <a  class="delete" ngbTooltip="Active/Inactive" placement="bottom" (click)="activeInactive(Item.subCityId)" 
+                *ngIf="permissions && permissions.Delete">
                     <div class="form-check form-switch ">
                        <input type="checkbox" class="form-check-input" 
                        *ngIf="Item.isActive==true"

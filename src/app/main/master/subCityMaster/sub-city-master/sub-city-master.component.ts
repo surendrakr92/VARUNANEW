@@ -19,12 +19,17 @@ export class SubCityMasterComponent implements OnInit {
  UserId:any
  totalItems: number = 5; // Initialize total items
  searchD:any=''
+ permissions:any
  itemsPerPage: number = 5;
  p: number = 1;
   constructor(private masterservice:CountryMasterService,
     private route:Router,private cs:CommonServiceService,//for id
     private toastrService:ToastrService){
     this.UserId=this.cs.login_User_Code()//for id
+    this.cs.permissions$.subscribe(permissions => {
+      this.permissions = permissions;
+      // Now you have access to all permissions in this.permissions
+    });
   }
   ngOnInit(): void {
   this.getSubCity()

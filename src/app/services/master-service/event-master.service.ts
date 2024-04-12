@@ -36,6 +36,12 @@ export class EventMasterService {
       body: data
     });
   }
+
+  // last event delete
+  deleteeventsbyid(data: SubCategory) {
+    let url = environment.baseWebApiUrl + 'varuna/v1/eventmaster/getlasteventbyvehicleno'
+    return this.http.post(url, data);
+  }
   //sub event master
   getAllSubEventMaster() {
     let url = environment.baseWebApiUrl + 'varuna/v1/subeventmaster/getallsubevents'
@@ -216,6 +222,10 @@ export class EventMasterService {
       "branchId": branchId
     });
   }
+
+
+
+
 // Load ability Mapping
 getAllLoadAbilitymappingList() {
   let url = environment.baseWebApiUrl + 'varuna/v1/loadabilitymapping/getallloadability'

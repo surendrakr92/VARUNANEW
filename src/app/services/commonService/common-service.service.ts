@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Currentuser } from 'src/app/models/user';
-
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonServiceService {
-
+ 
   constructor() { }
   objcurentusr: any
   menuDetails:any
   private modulemasterList: any[] = [];
+ 
+  private permissionsSubject = new BehaviorSubject<any>({});
+  permissions$ = this.permissionsSubject.asObservable();
+ 
   login_User_Code() {
     this.objcurentusr = JSON.parse(localStorage.getItem('user') || '{}');
     return this.objcurentusr?.userCode;
@@ -125,7 +130,7 @@ MenuDetail_By_ModuleId(){
       //  lengthChange:true
     };
   }
-  //csv_Json_gloabally method 
+  //csv_Json_gloabally method
   csvToJsonForResponse(file: File): Promise<any[]> {
     debugger
     return new Promise((resolve, reject) => {
@@ -144,46 +149,46 @@ MenuDetail_By_ModuleId(){
           }
           data.push(rowData);
         }
-
+ 
         // Process the data and resolve the promise
         resolve(this.processCsvData(data));
       };
-
+ 
       fileReader.onerror = (error) => {
         reject(error);
       };
-
+ 
       fileReader.readAsText(file);
     });
   }
   private processCsvData(data: any[]): any[] {
     this.modulemasterList = [];
-
+ 
     for (const row of data) {
       if (Object.values(row).every((value) => !value)) {
         continue;
       }
-
+ 
       if (!this.isValid(row)) {
         row.error = 'Validation failed error occurred!';
       }
-
+ 
       this.modulemasterList.push(row);
     }
-
+ 
     return this.modulemasterList;
   }
   private isValid(row: any): boolean {
     // Implement your custom validation logic here.
     // Return true if the row is valid, false otherwise.
-
+ 
     // Example: Check if 'Clause Name' and 'Clause Description' columns are present
     if (!row['Clause Name'] || !row['Clause Description']) {
       return false;
     }
-
+ 
     // Add more validation rules as needed
-
+ 
     return true;
   }
   /**
@@ -215,5 +220,7 @@ MenuDetail_By_ModuleId(){
     /* Clean up the temporary URL */
     return window.URL.revokeObjectURL(url);
   }
-
+  setPermissions(permissions: any) {
+    this.permissionsSubject.next(permissions);
+  }
 }

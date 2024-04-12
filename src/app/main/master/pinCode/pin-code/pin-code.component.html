@@ -23,25 +23,30 @@
       </div>
    </div>
    <div class="table-responsive">
-      <label for="">Page Size:</label>
-      <select class="  form-select mx-4 rounded selectclass w-auto" (change)="pagePerData($event)">
+      <label for="">Show 
+      <select class="  form-select mx-1 rounded selectclass w-auto" (change)="pagePerData($event)">
          <option value="5">5</option>
          <option value="10">10</option>
          <option value="20">20</option>
          <option value="50">50</option>
          <option value="100">100</option>
          <!-- <option value="100">All</option> -->
-      </select>
-      <div style="margin: 12px;" class="float-end">
-         <input type="text" name="" class="" id="dataaa" #dataaa placeholder="enter pincode for search"
-            (keyup)="searchData(dataaa.value)">
+               </select>
+               entries
+   </label>
+      <div style="    margin-top: -25px;" class="float-end">
+        <span class="rightdis">Search: <input type="text" name="" class="" id="dataaa" #dataaa placeholder="enter pincode for search"
+            (keyup)="searchData(dataaa.value)"> 
+            <button type="button" class="btn btn-primary  btn-sm" style="border-radius: 0px 8px 8px 0px;"><i class="bi bi-arrow-clockwise " (click)="resetData()" style="cursor: pointer;"></i></button>
+            
+         </span>
          <!-- <button 
          style="margin: 1px;" (click)="searchData(dataaa.value)">
             search
          </button> -->
-         <button style="margin: 1px;" (click)="resetData()">
+         <!-- <button style="margin: 1px;" (click)="resetData()">
             Reset
-         </button>
+         </button> -->
       </div>
       <table class="table table-report table-hover ">
          <thead class="bg-secondary text-white">

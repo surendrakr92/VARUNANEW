@@ -37,6 +37,7 @@ import { PODPFMTargetDaysComponent } from './POD/pod-pfm-target-days/pod-pfm-tar
 import { CreatePODPFMTargetDaysComponent } from './POD/pod-pfm-target-days/create-pod-pfm-target-days/create-pod-pfm-target-days.component';
 import { ManifestArrivalComponent } from './Manifest/manifest-arrival/manifest-arrival.component';
 import { KantaWeightComponent } from './KantaWeight/kanta-weight/kanta-weight.component';
+import { VehicleTypeChangeComponent } from './PRQ/vehicle-type-change/vehicle-type-change.component';
 @NgModule({
   declarations: [
     CreatePickupRequestComponent,
@@ -70,7 +71,8 @@ import { KantaWeightComponent } from './KantaWeight/kanta-weight/kanta-weight.co
     PODPFMTargetDaysComponent,
     CreatePODPFMTargetDaysComponent,
     ManifestArrivalComponent,
-    KantaWeightComponent
+    KantaWeightComponent,
+    VehicleTypeChangeComponent
   ],
   imports: [
     CommonModule,

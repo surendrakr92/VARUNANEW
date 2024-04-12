@@ -19,6 +19,7 @@ import { UploadPODCopyComponent } from "src/app/main/indent-management/POD/uploa
 import { CreatePickupRequestComponent } from "src/app/main/indent-management/PRQ/create-pickup-request/create-pickup-request.component";
 import { ListOfPickupRequestComponent } from "src/app/main/indent-management/PRQ/list-of-pickup-request/list-of-pickup-request.component";
 import { PickupRequestViewComponent } from "src/app/main/indent-management/PRQ/pickup-request-view/pickup-request-view.component";
+import { VehicleTypeChangeComponent } from "src/app/main/indent-management/PRQ/vehicle-type-change/vehicle-type-change.component";
 import { PickupClosureComponent } from "src/app/main/indent-management/PRQClosure/pickup-closure/pickup-closure.component";
 import { PrqClosureUpdateComponent } from "src/app/main/indent-management/PRQClosureUpdate/prq-closure-update/prq-closure-update.component";
 import { StockUpdateListComponent } from "src/app/main/indent-management/Stock Update/stock-update-list/stock-update-list.component";
@@ -51,6 +52,14 @@ export const IndentRoutes: Routes = [
       {
         path: 'pickup-closure-update', component: PrqClosureUpdateComponent
       },
+
+
+      {
+        path: 'vehicle-type-change', component: VehicleTypeChangeComponent
+      },
+
+      // docket
+
       {
         path: 'docket-entry', component: DocketEntryComponent
       },

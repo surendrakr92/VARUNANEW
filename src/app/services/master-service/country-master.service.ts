@@ -1069,6 +1069,17 @@ export class CountryMasterService {
       body: data
     });
   }
+// LastEventDelete
+deleteeventsbyid(data: any) {
+  let url = environment.baseWebApiUrl + 'varuna/v1/vehiclestatusentry/deleteeventsbyid'
+  return this.http.delete(url, {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    body: data
+  });
+}
+
   //-------- TDS Rate Differential Master  ------- 22 sep 2023
   getAllTDSRateDiffMasterList() {
     let url = environment.baseWebApiUrl + 'varuna/v1/tdsratediffrential/getalltdsratediffrentials'
